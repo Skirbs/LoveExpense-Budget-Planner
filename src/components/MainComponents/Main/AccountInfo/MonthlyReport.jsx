@@ -10,7 +10,7 @@ export default function MonthlyReport() {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap justify-center gap-4 ">
         <MonthlyBars month="Jan" />
         <MonthlyBars month="Feb" />
         <MonthlyBars month="Mar" />
