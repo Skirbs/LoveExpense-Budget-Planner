@@ -1,4 +1,5 @@
 import Card from "../../../ReusableComponents/Card";
+import BalanceManager from "./BalanceManager";
 import MonthlyReport from "./MonthlyReport";
 
 export default function AccountInfo() {
@@ -8,10 +9,8 @@ export default function AccountInfo() {
         <h2 className="font-medium text-3xl">Account Name's Balance</h2>
         <p className="text-lg">$100.00</p>
       </div>
-
-      <Card className="w-fit px-4 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg">
-        <MonthlyReport />
-      </Card>
+      <MonthlyReport />
+      <BalanceManager />
     </Card>
   );
 }

@@ -1,14 +1,13 @@
+import Button from "../../../ReusableComponents/Button";
 import Card from "../../../ReusableComponents/Card";
 
 export default function Account() {
   return (
     <li>
-      <Card>
-        <button className="bg-green-800 min-w-[128px] flex flex-col justify-center w-fit p-1 rounded-lg">
-          <p>Account Name</p>
-          <p>$100.00</p>
-        </button>
-      </Card>
+      <Button className="min-w-[128px] flex flex-col justify-center">
+        <p>Account Name</p>
+        <p>$100.00</p>
+      </Button>
     </li>
   );
 }

@@ -1,8 +1,9 @@
+import Card from "../../../ReusableComponents/Card";
 import MonthlyBars from "./MonthlyBars";
 
 export default function MonthlyReport() {
   return (
-    <>
+    <Card className="w-fit px-4 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg mx-2">
       <div className="w-full flex justify-center items-center gap-2">
         <h3 className="font-medium text-2xl">Monthly Expenses / Income</h3>
         <button className="flex justify-center items-center">
@@ -23,6 +24,6 @@ export default function MonthlyReport() {
         <MonthlyBars month="Oct" />
         <MonthlyBars month="Dec" />
       </div>
-    </>
+    </Card>
   );
 }
