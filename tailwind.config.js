@@ -17,7 +17,10 @@ export default {
         },
       },
       keyframes: {
-        "fade-up": {"0%": {transform: "translateY(16px)"}, "100%": {transform: "translateY(0px)"}},
+        "fade-up": {
+          "0%": {transform: "translateY(16px)", opacity: 0},
+          "100%": {transform: "translateY(0px)", opacity: 100},
+        },
       },
       animation: {
         "fade-up": "fade-up 0.15s ease-out",

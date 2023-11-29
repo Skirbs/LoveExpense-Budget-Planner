@@ -15,7 +15,9 @@ export default forwardRef(function Dialog({children, className, header, ...props
   return (
     <dialog
       ref={dialogRef}
-      className={`${className} z-10 bg-transparent rounded-xl outline-none backdrop:bg-black backdrop:opacity-25 open:animate-fade-up`}
+      className={`${
+        className || ""
+      } z-10 bg-transparent rounded-xl outline-none backdrop:bg-black backdrop:opacity-25 open:animate-fade-up`}
       {...props}>
       <Card className="bg-green-900 flex flex-col items-center p-2 rounded-xl">
         <form method="dialog">

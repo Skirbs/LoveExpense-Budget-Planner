@@ -1,12 +1,12 @@
 import Card from "../../../ReusableComponents/Card";
 import Button from "../../../ReusableComponents/Button";
 import RecordHistory from "./RecordHistory";
-import SettingDialog from "../../Dialog/SettingDialog";
+import RecordDialog from "../../Dialog/RecordDIalog";
 
 export default function BalanceManager() {
   return (
     <>
-      <SettingDialog />
+      <RecordDialog />
       <Card className="w-11/12 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg">
         <Button opacityChange>+ New Record</Button>
         <ul className="w-full flex flex-col items-center my-2 gap-1">

@@ -16,6 +16,16 @@
     background-color: yellow;
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   input[type="checkbox"]:after {
     content: "";
     display: inline-block;
