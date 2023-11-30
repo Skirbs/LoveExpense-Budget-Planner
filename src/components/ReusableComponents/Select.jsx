@@ -1,4 +1,6 @@
-export default function Select({className, children, ...props}) {
+import {forwardRef} from "react";
+
+export default forwardRef(function Select({className, children, ...props}) {
   return (
     <select
       id="setting-currency"
@@ -7,4 +9,4 @@ export default function Select({className, children, ...props}) {
       {children}
     </select>
   );
-}
+});

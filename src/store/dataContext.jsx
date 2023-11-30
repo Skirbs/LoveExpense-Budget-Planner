@@ -6,8 +6,13 @@ function usersDataReducer(state, action) {
   let currentState = [...state];
   switch (action.type) {
     case "ADD_USER":
-      currentState.unshift({userName: action.userName, balance: 0, history: []});
-      localStorage.setItem("usersData", currentState);
+      currentState.unshift({
+        userName: action.payload.userName,
+        balance: 0,
+        history: [],
+        key: Math.random().toString(36).slice(2, -1),
+      });
+      localStorage.setItem("usersData", JSON.stringify(currentState));
       return currentState;
       break;
   }
