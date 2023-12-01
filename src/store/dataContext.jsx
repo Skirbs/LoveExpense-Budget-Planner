@@ -1,6 +1,6 @@
 import {useState, createContext, useReducer} from "react";
 
-export const DataContext = createContext({users: [], darkMode: true});
+export const DataContext = createContext({usersData: [], darkMode: true});
 
 function usersDataReducer(state, action) {
   let currentState = [...state];
@@ -44,7 +44,7 @@ export default function DataContextComponent({children}) {
     });
   }
 
-  const dataContextVal = {usersData, addUser, darkMode: true};
+  const dataContextVal = {usersData, addUser};
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;
 }

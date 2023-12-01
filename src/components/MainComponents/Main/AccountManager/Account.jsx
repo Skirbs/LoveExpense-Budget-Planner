@@ -1,12 +1,12 @@
 import Button from "../../../ReusableComponents/Button";
 import Card from "../../../ReusableComponents/Card";
 
-export default function Account() {
+export default function Account({data}) {
   return (
     <li>
       <Button className="min-w-[128px] flex flex-col justify-center">
-        <p>Account Name</p>
-        <p>$100.00</p>
+        <p>{data.userName}</p>
+        <p>${data.balance.toFixed(2)}</p>
       </Button>
     </li>
   );

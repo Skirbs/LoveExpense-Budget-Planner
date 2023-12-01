@@ -30,7 +30,7 @@ export default forwardRef(function NewUserDialog(props, ref) {
             id="new-user-name"
             className="bg-green-900 flex-1"
             type="text"
-            maxLength="24"
+            maxLength="16"
           />
         </Card>
 
