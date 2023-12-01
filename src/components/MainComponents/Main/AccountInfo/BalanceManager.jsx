@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useRef} from "react";
 import {DataContext} from "../../../../store/dataContext";
 
 import Card from "../../../ReusableComponents/Card";
@@ -8,12 +8,21 @@ import RecordDialog from "../../Dialog/RecordDIalog";
 
 export default function BalanceManager() {
   const dataCtx = useContext(DataContext);
+  const accountData = dataCtx.usersData[dataCtx.activeUser];
+
+  const recordDialog = useRef();
+
+  function openRecordHandler() {
+    recordDialog.current.Open();
+  }
 
   return (
     <>
-      <RecordDialog />
+      <RecordDialog ref={recordDialog} />
       <Card className="w-11/12 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg">
-        <Button opacityChange>+ New Record</Button>
+        <Button onClick={openRecordHandler} opacityChange>
+          + New Record
+        </Button>
         <ul className="w-full flex flex-col items-center my-2 gap-1">
           <RecordHistory />
           <RecordHistory />
