@@ -1,9 +1,14 @@
+import {useContext} from "react";
+import {DataContext} from "../../../../store/dataContext";
+
 import Card from "../../../ReusableComponents/Card";
 import Button from "../../../ReusableComponents/Button";
 import RecordHistory from "./RecordHistory";
 import RecordDialog from "../../Dialog/RecordDIalog";
 
 export default function BalanceManager() {
+  const dataCtx = useContext(DataContext);
+
   return (
     <>
       <RecordDialog />

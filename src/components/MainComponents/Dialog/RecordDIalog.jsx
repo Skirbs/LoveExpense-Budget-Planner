@@ -1,20 +1,14 @@
 import {createPortal} from "react-dom";
-import {useRef} from "react";
+import {forwardRef} from "react";
 import Dialog from "./Dialog";
 import Card from "../../ReusableComponents/Card";
 import Input from "../../ReusableComponents/Input";
 import Button from "../../ReusableComponents/Button";
 import Select from "../../ReusableComponents/Select";
 
-export default function RecordDialog() {
-  const dialogRef = useRef();
-  /* document.addEventListener("keydown", (e) => {
-    if (e.key === "r") {
-      dialogRef.current.Open(); 
-    }
-  }); */
+export default forwardRef(function RecordDialog(props, ref) {
   return createPortal(
-    <Dialog ref={dialogRef} header="Balance Record">
+    <Dialog ref={ref} header="Balance Record">
       <form
         onSubmit={() => {}}
         className="flex flex-col items-center gap-1 mt-2 w-[80vw] sm:w-[350px]">
@@ -62,4 +56,4 @@ export default function RecordDialog() {
     </Dialog>,
     document.querySelector("#dialog")
   );
-}
+});
