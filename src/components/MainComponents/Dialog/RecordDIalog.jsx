@@ -8,11 +8,11 @@ import Select from "../../ReusableComponents/Select";
 
 export default function RecordDialog() {
   const dialogRef = useRef();
-  document.addEventListener("keydown", (e) => {
+  /* document.addEventListener("keydown", (e) => {
     if (e.key === "r") {
-      dialogRef.current.Open();
+      dialogRef.current.Open(); 
     }
-  });
+  }); */
   return createPortal(
     <Dialog ref={dialogRef} header="Balance Record">
       <form

@@ -6,8 +6,6 @@ import Card from "../../../ReusableComponents/Card";
 export default function Account({accData, index}) {
   const dataCtx = useContext(DataContext);
 
-  console.log(!(dataCtx.activeUser === index));
-
   function changeUserHandler() {
     dataCtx.changeActiveUser(index);
   }

@@ -1,18 +1,12 @@
 import {createPortal} from "react-dom";
-import {useRef} from "react";
+import {forwardRef} from "react";
 import Dialog from "./Dialog";
 import Card from "../../ReusableComponents/Card";
 import Select from "../../ReusableComponents/Select";
 
-export default function SettingDialog() {
-  const dialogRef = useRef();
-  /* document.addEventListener("keydown", (e) => {
-    if (e.key === "s") {
-      dialogRef.current.Open();
-    }
-  }); */
+export default forwardRef(function SettingDialog(props, ref) {
   return createPortal(
-    <Dialog ref={dialogRef} header="Settings">
+    <Dialog ref={ref} header="Settings">
       <div className="flex flex-col items-center gap-2 mt-2 w-[80vw] sm:w-[400px]">
         <Card className="bg-green-800 w-full flex items-center justify-between px-2 py-1 rounded-xl">
           <label htmlFor="setting-currency">
@@ -44,4 +38,4 @@ export default function SettingDialog() {
     </Dialog>,
     document.querySelector("#dialog")
   );
-}
+});
