@@ -1,12 +1,25 @@
+import {useContext} from "react";
+import {DataContext} from "../../../../store/dataContext";
 import Button from "../../../ReusableComponents/Button";
 import Card from "../../../ReusableComponents/Card";
 
-export default function Account({data}) {
+export default function Account({accData, index}) {
+  const dataCtx = useContext(DataContext);
+
+  console.log(!(dataCtx.activeUser === index));
+
+  function changeUserHandler() {
+    dataCtx.changeActiveUser(index);
+  }
   return (
     <li>
-      <Button className="min-w-[128px] flex flex-col justify-center">
-        <p>{data.userName}</p>
-        <p>${data.balance.toFixed(2)}</p>
+      <Button
+        onClick={changeUserHandler}
+        className={`min-w-[128px] flex flex-col justify-center${
+          !(dataCtx.activeUser === index) ? " opacity-70" : ""
+        }`}>
+        <p>{accData.userName}</p>
+        <p>${accData.balance.toFixed(2)}</p>
       </Button>
     </li>
   );

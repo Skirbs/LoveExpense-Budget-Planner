@@ -1,12 +1,12 @@
 import {useState, createContext, useReducer} from "react";
 
-export const DataContext = createContext({usersData: [], darkMode: true});
+export const DataContext = createContext({usersData: [], darkMode: true, activeUser: 0});
 
 function usersDataReducer(state, action) {
   let currentState = [...state];
   switch (action.type) {
     case "ADD_USER":
-      currentState.unshift({
+      currentState.push({
         userName: action.payload.userName,
         balance: 0,
         history: [],
@@ -34,6 +34,7 @@ export default function DataContextComponent({children}) {
     usersDataReducer,
     JSON.parse(localStorage.getItem("usersData")) || []
   );
+  const [activeUser, setActiveUser] = useState(0);
 
   function addUser(userName) {
     usersDataDispatch({
@@ -44,7 +45,17 @@ export default function DataContextComponent({children}) {
     });
   }
 
-  const dataContextVal = {usersData, addUser};
+  if (usersData.length <= activeUser && activeUser > 0) {
+    setActiveUser((prev) => {
+      return prev - 1;
+    });
+  }
+
+  function changeActiveUser(userIndex) {
+    setActiveUser(userIndex);
+  }
+
+  const dataContextVal = {usersData, addUser, activeUser, changeActiveUser};
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;
 }
