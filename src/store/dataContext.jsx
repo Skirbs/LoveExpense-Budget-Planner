@@ -15,6 +15,24 @@ function usersDataReducer(state, action) {
       localStorage.setItem("usersData", JSON.stringify(currentState));
       return currentState;
       break;
+
+    case "ADD_RECORD":
+      const {userIndex, type, desc, date, amt} = action.payload;
+      currentState[userIndex].history.unshift({
+        type,
+        desc,
+        date,
+        amt,
+        key: Math.random().toString(36).slice(2, -1),
+      });
+
+      type === "+"
+        ? (currentState[userIndex].balance += amt)
+        : (currentState[userIndex].balance -= amt);
+
+      localStorage.setItem("usersData", JSON.stringify(currentState));
+      return currentState;
+      break;
   }
   return state;
 }
@@ -36,6 +54,12 @@ export default function DataContextComponent({children}) {
   );
   const [activeUser, setActiveUser] = useState(0);
 
+  if (usersData.length <= activeUser && activeUser > 0) {
+    setActiveUser((prev) => {
+      return prev - 1;
+    });
+  }
+
   function addUser(userName) {
     usersDataDispatch({
       type: "ADD_USER",
@@ -45,17 +69,30 @@ export default function DataContextComponent({children}) {
     });
   }
 
-  if (usersData.length <= activeUser && activeUser > 0) {
-    setActiveUser((prev) => {
-      return prev - 1;
-    });
-  }
-
   function changeActiveUser(userIndex) {
     setActiveUser(userIndex);
   }
 
-  const dataContextVal = {usersData, addUser, activeUser, changeActiveUser};
+  function addBalanceRecord(type, desc, date, amt) {
+    usersDataDispatch({
+      type: "ADD_RECORD",
+      payload: {
+        userIndex: activeUser,
+        type,
+        desc,
+        date,
+        amt,
+      },
+    });
+    /* usersDataDispatch({
+      type: "h",
+      payload: {
+        userName: "aaaaaaaaaaaaaa",
+      },
+    }); */
+  }
+
+  const dataContextVal = {usersData, addUser, activeUser, changeActiveUser, addBalanceRecord};
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;
 }

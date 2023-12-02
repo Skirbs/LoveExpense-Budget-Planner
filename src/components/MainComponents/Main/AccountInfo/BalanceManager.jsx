@@ -24,10 +24,18 @@ export default function BalanceManager() {
           + New Record
         </Button>
         <ul className="w-full flex flex-col items-center my-2 gap-1">
-          <RecordHistory />
-          <RecordHistory />
-          <RecordHistory />
-          <RecordHistory />
+          {accountData.history.map((data) => {
+            return (
+              <RecordHistory
+                key={data.key}
+                type={data.type}
+                date={data.date}
+                desc={data.desc}
+                amt={data.amt}
+              />
+            );
+          })}
+
           <li className="w-11/12 px-5 py-1 flex justify-center items-center gap-3">
             <Button className="!p-1 flex items-center" opacityChange>
               <span className="material-symbols-outlined">chevron_left</span>

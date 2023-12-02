@@ -6,10 +6,6 @@ import {useEffect, useReducer, useState} from "react";
 
 function App() {
   /* ForceUpdate fixes bugs for refs */
-  const [forceUpdate, setForceUpdate] = useState(true);
-  useEffect(() => {
-    setForceUpdate(false);
-  }, []);
 
   return (
     <>

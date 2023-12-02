@@ -14,6 +14,7 @@ export default forwardRef(function NewUserDialog(props, ref) {
   function newUserHandler(e) {
     e.preventDefault();
     dataCtx.addUser(nameRef.current.value);
+    ref.current.Close();
   }
 
   return createPortal(

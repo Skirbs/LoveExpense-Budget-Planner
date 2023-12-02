@@ -9,6 +9,9 @@ export default forwardRef(function Dialog({children, className, header, ...props
       Open() {
         dialogRef.current.showModal(); /* Check After A While IF Error Still Pops Up */
       },
+      Close() {
+        dialogRef.current.close(); /* Check After A While IF Error Still Pops Up */
+      },
     };
   });
 
