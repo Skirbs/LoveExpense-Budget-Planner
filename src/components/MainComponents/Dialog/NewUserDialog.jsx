@@ -5,7 +5,6 @@ import Dialog from "./Dialog";
 import Card from "../../ReusableComponents/Card";
 import Input from "../../ReusableComponents/Input";
 import Button from "../../ReusableComponents/Button";
-import Select from "../../ReusableComponents/Select";
 
 export default forwardRef(function NewUserDialog(props, ref) {
   const dataCtx = useContext(DataContext);

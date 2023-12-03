@@ -5,8 +5,6 @@ import DataContextComponent from "./store/dataContext";
 import {useEffect, useReducer, useState} from "react";
 
 function App() {
-  /* ForceUpdate fixes bugs for refs */
-
   return (
     <>
       <DataContextComponent>

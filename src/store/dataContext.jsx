@@ -1,6 +1,12 @@
 import {useState, createContext, useReducer} from "react";
 
-export const DataContext = createContext({usersData: [], darkMode: true, activeUser: 0});
+export const DataContext = createContext({
+  usersData: [],
+  addUser: () => {},
+  activeUser: 0,
+  changeActiveUser: () => {},
+  addBalanceRecord: () => {},
+});
 
 function usersDataReducer(state, action) {
   let currentState = [...state];

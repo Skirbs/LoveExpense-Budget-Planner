@@ -56,7 +56,7 @@ export default forwardRef(function RecordDialog(props, ref) {
             id="record-date"
             className="bg-green-900 flex-1"
             type="date"
-            defaultValue={`${currentTime.getFullYear()}-${currentTime.getMonth()}-${currentTime
+            defaultValue={`${currentTime.getFullYear()}-${currentTime.getMonth() + 1}-${currentTime
               .getDate()
               .toString()
               .padStart(2, "0")}`}
@@ -89,6 +89,7 @@ export default forwardRef(function RecordDialog(props, ref) {
             type="number"
             step="0.01"
             min="0.01"
+            required
           />
         </Card>
 

@@ -44,3 +44,11 @@
     scale: 1;
   }
 }
+
+@layer components {
+  .monthly-bar {
+    height: 0%;
+    transition: all 0.3s ease-out;
+    @apply w-full bg-green-800 inset-x-0 bottom-0 absolute;
+  }
+}
