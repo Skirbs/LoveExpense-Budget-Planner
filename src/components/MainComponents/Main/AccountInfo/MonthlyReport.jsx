@@ -19,6 +19,7 @@ const allMonths = [
   "Dec",
 ];
 let currentYear;
+
 export default function MonthlyReport() {
   const dataCtx = useContext(DataContext);
   const yearRef = useRef();
@@ -36,8 +37,9 @@ export default function MonthlyReport() {
   let maxAmount = 0; /* highest income/expense total */
 
   const [monthlyValue, setMonthlyValue] = useState([]); /* value of each month */
-  function changeYearHandler() {
-    currentYear = yearRef.current.value;
+  const [currentType, setCurrentType] = useState("+");
+
+  function getMontlyReport() {
     const filteredRecords = userHistory.filter((history) => {
       return currentYear === history.date.slice(0, 4);
     }); /* Records iltered by year */
@@ -51,7 +53,7 @@ export default function MonthlyReport() {
         return record.date.slice(5, 7) == i + 1;
       });
       const filteredMonthByType = filteredMonth.filter((record) => {
-        return record.type === "+";
+        return record.type === currentType;
       });
       filteredMonthsByType.push(filteredMonthByType);
 
@@ -60,28 +62,40 @@ export default function MonthlyReport() {
       }, 0);
       filteredMonthlyValue.push(monthAmountSum);
     }
-
     setMonthlyValue(filteredMonthlyValue);
   }
+  function changeYearHandler() {
+    currentYear = yearRef.current.value;
+    getMontlyReport();
+  }
 
+  function changeTypeHandler() {
+    setCurrentType((prev) => {
+      return prev === "+" ? "-" : "+";
+    });
+  }
   useEffect(() => {
-    changeYearHandler();
-  }, []);
+    currentYear = yearRef.current.value;
+    console.log(currentType);
 
-  maxAmount = Math.max(...monthlyValue);
+    getMontlyReport();
+  }, [currentType]);
+  maxAmount = Math.max(...monthlyValue) || 1;
 
   // Secondary Goal: onClick switchButton
   return (
     <Card className="w-fit px-4 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg mx-2">
       <div className="w-full flex justify-center items-center gap-2">
-        <h3 className="font-medium text-2xl">Monthly Expenses / Income</h3>
-        <button className="flex justify-center items-center">
+        <h3 className="font-medium text-2xl">
+          Monthly {currentType === "+" ? "Income" : "Expense"}
+        </h3>
+        <button onClick={changeTypeHandler} className="flex justify-center items-center">
           <span className="material-symbols-outlined">autorenew</span>
         </button>
         <Select
           ref={yearRef}
           onChange={changeYearHandler}
-          className="bg-green-800 drop-shadow-md px-2 py-[0.05rem] !rounded-lg font-medium empty:hidden"
+          className="bg-green-800 drop-shadow-md px-2 py-[0.05rem] !rounded-lg font-medium empty:hidden static md:absolute right-32"
           defaultValue={currentYear}>
           {availableYears.map((year, index) => {
             return (
