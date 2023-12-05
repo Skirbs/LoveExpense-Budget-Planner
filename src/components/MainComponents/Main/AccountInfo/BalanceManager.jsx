@@ -6,6 +6,10 @@ import Button from "../../../ReusableComponents/Button";
 import RecordHistory from "./RecordHistory";
 import RecordDialog from "../../Dialog/RecordDIalog";
 
+import DeleteDialog from "../../Dialog/DeleteDialog";
+
+import {data} from "autoprefixer";
+
 const maxRecordPerPage = 5;
 
 export default function BalanceManager() {
@@ -16,8 +20,27 @@ export default function BalanceManager() {
 
   const recordDialog = useRef();
 
+  const deleteDialog = useRef();
+  const deleteSelectedRecord = useRef();
+  const deleteSelectedRecordAmt = useRef();
+
   function openRecordHandler() {
     recordDialog.current.Open();
+  }
+
+  function deleteDialogHandler(recordIndex, recordAmount) {
+    deleteSelectedRecordAmt.current = recordAmount;
+    deleteSelectedRecord.current = recordIndex;
+    deleteDialog.current.Open();
+  }
+
+  function deleteHandler() {
+    dataCtx.deleteRecord(
+      dataCtx.activeUser,
+      deleteSelectedRecord.current,
+      deleteSelectedRecordAmt.current
+    );
+    deleteDialog.current.Close();
   }
 
   function setPagination(nextPage) {
@@ -32,6 +55,7 @@ export default function BalanceManager() {
 
   return (
     <>
+      <DeleteDialog ref={deleteDialog} deleteHandler={deleteHandler} isAccount={false} />
       <RecordDialog ref={recordDialog} />
       <Card className="w-11/12 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg">
         <Button onClick={openRecordHandler} opacityChange>
@@ -46,7 +70,7 @@ export default function BalanceManager() {
                 maxRecordPerPage * currentPagination,
                 maxRecordPerPage * (currentPagination + 1)
               )
-              .map((data, i) => {
+              .map((data, index) => {
                 return (
                   <RecordHistory
                     key={data.key}
@@ -54,6 +78,8 @@ export default function BalanceManager() {
                     date={data.date}
                     desc={data.desc}
                     amt={data.amt}
+                    index={index}
+                    deleteDialogHandler={deleteDialogHandler}
                   />
                 );
               })}

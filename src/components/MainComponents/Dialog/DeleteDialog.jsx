@@ -6,19 +6,19 @@ import Card from "../../ReusableComponents/Card";
 import Input from "../../ReusableComponents/Input";
 import Button from "../../ReusableComponents/Button";
 
-export default forwardRef(function DeleteDialog({deleteHandler}, ref) {
+export default forwardRef(function DeleteDialog({isAccount, deleteHandler}, ref) {
   const dataCtx = useContext(DataContext);
   const nameRef = useRef();
 
-  /* deleteHandler = (key, index) => {
-    console.log("Test");
-  }; */
+  function closeDialog() {
+    ref.current.Close();
+  }
 
   return createPortal(
-    <Dialog ref={ref} header={`Delete ${true ? "Account" : "Record"}?`}>
+    <Dialog ref={ref} header={`Delete ${isAccount ? "Account" : "Record"}?`}>
       <div>
-        <h3>delete{/*  {name}? */}</h3>
-        <Button>No</Button>
+        <h3>delete {isAccount ? "Account" : "Record"}</h3>
+        <Button onClick={closeDialog}>No</Button>
         <Button onClick={deleteHandler}>Yes</Button>
       </div>
     </Dialog>,

@@ -7,6 +7,7 @@ export const DataContext = createContext({
   changeActiveUser: () => {},
   addBalanceRecord: () => {},
   deleteUser: () => {},
+  deleteRecord: () => {},
 });
 
 function usersDataReducer(state, action) {
@@ -16,7 +17,7 @@ function usersDataReducer(state, action) {
   }
 
   switch (action.type) {
-    case "ADD_USER":
+    case "ADD_USER": {
       currentState.push({
         userName: action.payload.userName,
         balance: 0,
@@ -26,8 +27,8 @@ function usersDataReducer(state, action) {
       save();
       return currentState;
       break;
-
-    case "ADD_RECORD":
+    }
+    case "ADD_RECORD": {
       const {userIndex, type, desc, date, amt} = action.payload;
       currentState[userIndex].history.unshift({
         type,
@@ -44,11 +45,24 @@ function usersDataReducer(state, action) {
       save();
       return currentState;
       break;
-    case "DELETE_USER":
+    }
+    case "DELETE_USER": {
       currentState.splice(action.payload.index, 1);
-      localStorage.setItem("usersData", JSON.stringify(currentState));
+      save();
       return currentState;
       break;
+    }
+
+    case "DELETE_RECORD": {
+      const {userIndex, recordIndex, amt} = action.payload;
+      currentState[userIndex].history[recordIndex].type === "+"
+        ? (currentState[userIndex].balance -= amt)
+        : (currentState[userIndex].balance += amt);
+      currentState[userIndex].history.splice(recordIndex, 1);
+      save();
+      return currentState;
+      break;
+    }
   }
   return state;
 }
@@ -108,7 +122,12 @@ export default function DataContextComponent({children}) {
       payload: {index},
     });
   }
-
+  function deleteRecord(userIndex, recordIndex, amt) {
+    usersDataDispatch({
+      type: "DELETE_RECORD",
+      payload: {userIndex, recordIndex, amt},
+    });
+  }
   const dataContextVal = {
     usersData,
     addUser,
@@ -116,6 +135,7 @@ export default function DataContextComponent({children}) {
     changeActiveUser,
     addBalanceRecord,
     deleteUser,
+    deleteRecord,
   };
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;

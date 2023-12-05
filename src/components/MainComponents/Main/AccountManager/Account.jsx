@@ -18,7 +18,7 @@ export default function Account({accData, index, deleteDialogHandler}) {
           deleteDialogHandler(index);
         }}>
         <span
-          className="material-symbols-outlined text-[1.2rem]"
+          className="material-symbols-outlined text-[1.2rem]  hover:opacity-80 hover:scale-90 active:scale-75"
           style={{fontVariationSettings: "'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24"}}>
           delete
         </span>

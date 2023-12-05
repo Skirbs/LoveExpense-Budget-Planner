@@ -17,14 +17,14 @@ export default function AccountManager() {
     dialogRef.current.Open();
   }
 
-  function deleteHandler(accountIndex) {
-    dataCtx.deleteUser(accountIndex);
+  function deleteHandler() {
+    dataCtx.deleteUser(deleteSelectedAcc.current);
     dialogRef.current.Close();
   }
 
   return (
     <>
-      <DeleteDialog ref={dialogRef} deleteHandler={deleteHandler} />
+      <DeleteDialog ref={dialogRef} deleteHandler={deleteHandler} isAccount />
       <Card className="bg-green-925 w-11/12 py-3 px-2 rounded-b-lg flex flex-col items-center sm:items-start">
         <h2 className="font-medium text-lg">Accounts</h2>
         <ul className="flex flex-wrap items-center justify-center sm:justify-normal py-1 gap-2.5">
