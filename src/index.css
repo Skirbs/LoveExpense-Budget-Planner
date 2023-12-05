@@ -10,6 +10,10 @@
     color: white;
   }
 
+  body {
+    background-image: linear-gradient(#052e16, #011107 200vh);
+  }
+
   select {
     text-align: center;
     outline: none;
