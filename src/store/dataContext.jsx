@@ -6,10 +6,15 @@ export const DataContext = createContext({
   activeUser: 0,
   changeActiveUser: () => {},
   addBalanceRecord: () => {},
+  deleteUser: () => {},
 });
 
 function usersDataReducer(state, action) {
   let currentState = [...state];
+  function save() {
+    localStorage.setItem("usersData", JSON.stringify(currentState));
+  }
+
   switch (action.type) {
     case "ADD_USER":
       currentState.push({
@@ -18,7 +23,7 @@ function usersDataReducer(state, action) {
         history: [],
         key: Math.random().toString(36).slice(2, -1),
       });
-      localStorage.setItem("usersData", JSON.stringify(currentState));
+      save();
       return currentState;
       break;
 
@@ -36,6 +41,11 @@ function usersDataReducer(state, action) {
         ? (currentState[userIndex].balance += amt)
         : (currentState[userIndex].balance -= amt);
 
+      save();
+      return currentState;
+      break;
+    case "DELETE_USER":
+      currentState.splice(action.payload.index, 1);
       localStorage.setItem("usersData", JSON.stringify(currentState));
       return currentState;
       break;
@@ -90,15 +100,23 @@ export default function DataContextComponent({children}) {
         amt,
       },
     });
-    /* usersDataDispatch({
-      type: "h",
-      payload: {
-        userName: "aaaaaaaaaaaaaa",
-      },
-    }); */
   }
 
-  const dataContextVal = {usersData, addUser, activeUser, changeActiveUser, addBalanceRecord};
+  function deleteUser(index) {
+    usersDataDispatch({
+      type: "DELETE_USER",
+      payload: {index},
+    });
+  }
+
+  const dataContextVal = {
+    usersData,
+    addUser,
+    activeUser,
+    changeActiveUser,
+    addBalanceRecord,
+    deleteUser,
+  };
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;
 }

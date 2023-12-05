@@ -85,7 +85,6 @@ export default function MonthlyReport() {
   }
   useEffect(() => {
     currentYear = yearRef.current.value;
-    console.log(currentType);
 
     getMontlyReport();
   }, [currentType]);

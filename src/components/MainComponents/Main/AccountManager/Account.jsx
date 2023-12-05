@@ -3,14 +3,26 @@ import {DataContext} from "../../../../store/dataContext";
 import Button from "../../../ReusableComponents/Button";
 import Card from "../../../ReusableComponents/Card";
 
-export default function Account({accData, index}) {
+export default function Account({accData, index, deleteDialogHandler}) {
   const dataCtx = useContext(DataContext);
 
   function changeUserHandler() {
     dataCtx.changeActiveUser(index);
   }
+
   return (
-    <li>
+    <li className="relative">
+      <button
+        className="absolute z-10 right-1 top-1"
+        onClick={() => {
+          deleteDialogHandler(index);
+        }}>
+        <span
+          className="material-symbols-outlined text-[1.2rem]"
+          style={{fontVariationSettings: "'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24"}}>
+          delete
+        </span>
+      </button>
       <Button
         onClick={changeUserHandler}
         className={`min-w-[128px] flex flex-col justify-center${
