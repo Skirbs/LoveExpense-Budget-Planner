@@ -4,6 +4,15 @@ import Card from "../../../ReusableComponents/Card";
 import Select from "../../../ReusableComponents/Select";
 import MonthlyBars from "./MonthlyBars";
 
+/* Goals:
+   delete record (with dialog)
+   delete account (with dialog)
+   Change CurrencySymbol
+   Change DarkMode (Maybe idk)
+
+
+*/
+
 const allMonths = [
   "Jan",
   "Feb",
@@ -89,13 +98,15 @@ export default function MonthlyReport() {
         <h3 className="font-medium text-2xl">
           Monthly {currentType === "+" ? "Income" : "Expense"}
         </h3>
-        <button onClick={changeTypeHandler} className="flex justify-center items-center">
+        <button
+          onClick={changeTypeHandler}
+          className="flex justify-center items-center transition-all  hover:scale-90 active:scale-75">
           <span className="material-symbols-outlined">autorenew</span>
         </button>
         <Select
           ref={yearRef}
           onChange={changeYearHandler}
-          className="bg-green-800 drop-shadow-md px-2 py-[0.05rem] !rounded-lg font-medium empty:hidden static md:absolute right-32"
+          className="bg-green-800 drop-shadow-md px-2 py-[0.05rem] !rounded-lg font-medium empty:hidden static md:absolute right-[20%]"
           defaultValue={currentYear}>
           {availableYears.map((year, index) => {
             return (
