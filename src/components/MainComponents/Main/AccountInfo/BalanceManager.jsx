@@ -8,15 +8,13 @@ import RecordDialog from "../../Dialog/RecordDIalog";
 
 import DeleteDialog from "../../Dialog/DeleteDialog";
 
-import {data} from "autoprefixer";
-
-const maxRecordPerPage = 5;
-
 export default function BalanceManager() {
   const dataCtx = useContext(DataContext);
   const accountData = dataCtx.usersData[dataCtx.activeUser];
   const accountHistory = accountData.history;
   const [currentPagination, setCurrentPagination] = useState(0);
+
+  const maxRecordPerPage = dataCtx.recordsPerPage;
 
   const recordDialog = useRef();
 

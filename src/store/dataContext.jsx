@@ -10,6 +10,8 @@ export const DataContext = createContext({
   deleteRecord: () => {},
   currentCurrency: "",
   setCurrencyHandler: () => {},
+  recordsPerPage: 0,
+  recordsPerPageHandler: () => {},
 });
 
 function usersDataReducer(state, action) {
@@ -86,6 +88,7 @@ export default function DataContextComponent({children}) {
   );
   const [activeUser, setActiveUser] = useState(0);
   const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem("currency") || "$");
+  const [recordsPerPage, setRecordsPerPage] = useState(localStorage.getItem("records") || "5");
 
   if (usersData.length <= activeUser && activeUser > 0) {
     setActiveUser((prev) => {
@@ -137,6 +140,11 @@ export default function DataContextComponent({children}) {
     localStorage.setItem("currency", val);
   }
 
+  function recordsPerPageHandler(val) {
+    setRecordsPerPage(val);
+    localStorage.setItem("records", val);
+  }
+
   const dataContextVal = {
     usersData,
     addUser,
@@ -147,6 +155,8 @@ export default function DataContextComponent({children}) {
     deleteRecord,
     currentCurrency,
     setCurrencyHandler,
+    recordsPerPage,
+    recordsPerPageHandler,
   };
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;

@@ -33,7 +33,28 @@ export default forwardRef(function SettingDialog(props, ref) {
           </Select>
         </Card>
 
-        <Card className="bg-green-800 w-full flex items-center justify-between gap-3 px-2 py-1 rounded-xl">
+        <Card className="bg-green-800 w-full flex items-center justify-between px-2 py-1 rounded-xl">
+          <label htmlFor="setting-max-record">Records per page</label>
+          <Select
+            id="setting-max-record"
+            className="bg-green-900 w-[2rem] h-[2rem]"
+            defaultValue={dataCtx.recordsPerPage}
+            onChange={(e) => {
+              dataCtx.recordsPerPageHandler(e.target.value);
+            }}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </Select>
+        </Card>
+
+        {/*Dark mode setting (Someday?)
+         <Card className="bg-green-800 w-full flex items-center justify-between gap-3 px-2 py-1 rounded-xl">
           <label htmlFor="dark-mode-setting">Dark Mode</label>
           <input
             id="dark-mode-setting"
@@ -43,6 +64,7 @@ export default forwardRef(function SettingDialog(props, ref) {
             defaultChecked
           />
         </Card>
+         */}
       </div>
     </Dialog>,
     document.querySelector("#dialog")
