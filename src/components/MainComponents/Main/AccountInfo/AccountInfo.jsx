@@ -16,7 +16,7 @@ export default function AccountInfo() {
           <h2 className="font-medium text-3xl">{accountData.userName}</h2>
           <p className="text-lg">
             {dataCtx.currentCurrency}
-            {accountData.balance.toFixed(2)}
+            {accountData.balance.toLocaleString("en-US", {minimumFractionDigits: 2})}
           </p>
         </div>
         <MonthlyReport />

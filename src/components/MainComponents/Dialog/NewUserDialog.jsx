@@ -22,13 +22,13 @@ export default forwardRef(function NewUserDialog(props, ref) {
         onSubmit={newUserHandler}
         className="flex flex-col items-center gap-1 mt-2 w-[80vw] sm:w-[350px]">
         <Card className="bg-green-800 w-full flex items-center justify-between px-2 py-1 rounded-xl">
-          <label className="w-fit mr-2 text-center" htmlFor="new-user-name">
+          <label className="flex-1 xs:flex-none xs:w-fit mr-2 text-center" htmlFor="new-user-name">
             Account Name
           </label>
           <Input
             ref={nameRef}
             id="new-user-name"
-            className="bg-green-900 flex-1"
+            className="bg-green-900 w-36 xs:flex-1"
             type="text"
             maxLength="16"
           />

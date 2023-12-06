@@ -6,7 +6,7 @@ export default function RecordHistory({type, desc, date, amt, index, deleteDialo
   })} ${recordDate.getDate()}, ${recordDate.getFullYear()}`;
   return (
     <li className="w-full flex justify-center">
-      <Card className="w-11/12 mx-3 px-5 py-1 flex justify-between items-center bg-green-800 rounded-lg">
+      <Card className="w-8/12 sm:w-11/12 mx-3 px-5 py-1 flex flex-col sm:flex-row justify-between items-center bg-green-800 rounded-lg">
         <button
           className="absolute z-10 right-1 top-1"
           onClick={() => {
@@ -18,11 +18,11 @@ export default function RecordHistory({type, desc, date, amt, index, deleteDialo
             delete
           </span>
         </button>
-        <p className="font-medium text-lg">{desc}</p>
-        <div className="flex flex-col justify-center items-center">
-          <p className="font-medium text-lg">
+        <p className="w-full text-center sm:text-start font-medium text-lg break-words">{desc}</p>
+        <div className="flex flex-col items-end mr-2">
+          <p className="min-w-[90px] text-end w-full font-medium text-lg break-words">
             {type}
-            {amt}
+            {amt.toLocaleString("en-US", {minimumFractionDigits: 2})}
           </p>
           <p className="font-medium text-sm opacity-40">{formattedDate}</p>
         </div>

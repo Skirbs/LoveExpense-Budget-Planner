@@ -31,7 +31,7 @@ export default function Account({accData, index, deleteDialogHandler}) {
         <p>{accData.userName}</p>
         <p>
           {dataCtx.currentCurrency}
-          {accData.balance.toFixed(2)}
+          {accData.balance.toLocaleString("en-US", {minimumFractionDigits: 2})}
         </p>
       </Button>
     </li>

@@ -17,7 +17,7 @@ export default forwardRef(function DeleteDialog({isAccount, deleteHandler}, ref)
   return createPortal(
     <Dialog ref={ref} header={`Delete ${isAccount ? "Account" : "Record"}?`}>
       <div className="flex flex-col">
-        <h3 className="text-[1.1rem] w-96 text-center p-1.5 mt-1 mb-2 rounded-md bg-green-800">
+        <h3 className="text-[1.1rem] w-fit sm:w-96 text-center p-1.5 mt-1 mb-2 rounded-md bg-green-800">
           Are you sure you want to delete the {isAccount ? "account" : "record"}? This cant be
           undone.
         </h3>
