@@ -4,12 +4,6 @@ import Card from "../../../ReusableComponents/Card";
 import Select from "../../../ReusableComponents/Select";
 import MonthlyBars from "./MonthlyBars";
 
-/* Goals:
-   Change CurrencySymbol
-   Change Amount of records ShownR
-   Change DarkMode (Maybe idk)
-*/
-
 const allMonths = [
   "Jan",
   "Feb",
@@ -87,7 +81,6 @@ export default function MonthlyReport() {
   }, [currentType]);
   maxAmount = Math.max(...monthlyValue) || 1;
 
-  // Secondary Goal: onClick switchButton
   return (
     <Card className="w-fit px-4 py-2 flex flex-col justify-center items-center bg-green-900 rounded-lg mx-2">
       <div className="w-full flex justify-center items-center gap-2">

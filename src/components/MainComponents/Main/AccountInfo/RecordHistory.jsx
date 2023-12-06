@@ -1,5 +1,9 @@
 import Card from "../../../ReusableComponents/Card";
 export default function RecordHistory({type, desc, date, amt, index, deleteDialogHandler}) {
+  const recordDate = new Date(date);
+  const formattedDate = `${recordDate.toLocaleString("default", {
+    month: "short",
+  })} ${recordDate.getDate()}, ${recordDate.getFullYear()}`;
   return (
     <li className="w-full flex justify-center">
       <Card className="w-11/12 mx-3 px-5 py-1 flex justify-between items-center bg-green-800 rounded-lg">
@@ -20,7 +24,7 @@ export default function RecordHistory({type, desc, date, amt, index, deleteDialo
             {type}
             {amt}
           </p>
-          <p className="font-medium text-sm opacity-40">{date}</p>
+          <p className="font-medium text-sm opacity-40">{formattedDate}</p>
         </div>
       </Card>
     </li>

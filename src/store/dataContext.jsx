@@ -8,6 +8,8 @@ export const DataContext = createContext({
   addBalanceRecord: () => {},
   deleteUser: () => {},
   deleteRecord: () => {},
+  currentCurrency: "",
+  setCurrencyHandler: () => {},
 });
 
 function usersDataReducer(state, action) {
@@ -83,6 +85,7 @@ export default function DataContextComponent({children}) {
     JSON.parse(localStorage.getItem("usersData")) || []
   );
   const [activeUser, setActiveUser] = useState(0);
+  const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem("currency") || "$");
 
   if (usersData.length <= activeUser && activeUser > 0) {
     setActiveUser((prev) => {
@@ -128,6 +131,12 @@ export default function DataContextComponent({children}) {
       payload: {userIndex, recordIndex, amt},
     });
   }
+
+  function setCurrencyHandler(val) {
+    setCurrentCurrency(val);
+    localStorage.setItem("currency", val);
+  }
+
   const dataContextVal = {
     usersData,
     addUser,
@@ -136,6 +145,8 @@ export default function DataContextComponent({children}) {
     addBalanceRecord,
     deleteUser,
     deleteRecord,
+    currentCurrency,
+    setCurrencyHandler,
   };
 
   return <DataContext.Provider value={dataContextVal}>{children}</DataContext.Provider>;

@@ -29,7 +29,10 @@ export default function Account({accData, index, deleteDialogHandler}) {
           !(dataCtx.activeUser === index) ? " opacity-70" : ""
         }`}>
         <p>{accData.userName}</p>
-        <p>${accData.balance.toFixed(2)}</p>
+        <p>
+          {dataCtx.currentCurrency}
+          {accData.balance.toFixed(2)}
+        </p>
       </Button>
     </li>
   );

@@ -1,18 +1,27 @@
 import {createPortal} from "react-dom";
-import {forwardRef} from "react";
+import {forwardRef, useContext} from "react";
+import {DataContext} from "../../../store/dataContext";
 import Dialog from "./Dialog";
 import Card from "../../ReusableComponents/Card";
 import Select from "../../ReusableComponents/Select";
 
 export default forwardRef(function SettingDialog(props, ref) {
+  const dataCtx = useContext(DataContext);
   return createPortal(
     <Dialog ref={ref} header="Settings">
       <div className="flex flex-col items-center gap-2 mt-2 w-[80vw] sm:w-[400px]">
         <Card className="bg-green-800 w-full flex items-center justify-between px-2 py-1 rounded-xl">
           <label htmlFor="setting-currency">
-            Currency <span className="text-green-950 text-sm font-bold">(No Conversion)</span>
+            Currency Symbol{" "}
+            <span className="text-green-950 text-sm font-bold">(No Conversion)</span>
           </label>
-          <Select id="setting-currency" className="bg-green-900 w-[2rem] h-[2rem]">
+          <Select
+            id="setting-currency"
+            className="bg-green-900 w-[2rem] h-[2rem]"
+            defaultValue={dataCtx.currentCurrency}
+            onChange={(e) => {
+              dataCtx.setCurrencyHandler(e.target.value);
+            }}>
             <option value="$">$</option>
             <option value="£">£</option>
             <option value="€">€</option>

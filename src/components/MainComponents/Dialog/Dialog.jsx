@@ -7,10 +7,10 @@ export default forwardRef(function Dialog({children, className, header, ...props
   useImperativeHandle(ref, () => {
     return {
       Open() {
-        dialogRef.current.showModal(); /* Check After A While IF Error Still Pops Up */
+        dialogRef.current.showModal();
       },
       Close() {
-        dialogRef.current.close(); /* Check After A While IF Error Still Pops Up */
+        dialogRef.current.close();
       },
     };
   });

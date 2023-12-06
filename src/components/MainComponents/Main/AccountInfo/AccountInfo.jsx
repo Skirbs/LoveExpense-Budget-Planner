@@ -14,7 +14,10 @@ export default function AccountInfo() {
       <>
         <div className="w-full bg-green-900 flex flex-col justify-center items-center py-1">
           <h2 className="font-medium text-3xl">{accountData.userName}</h2>
-          <p className="text-lg">${accountData.balance.toFixed(2)}</p>
+          <p className="text-lg">
+            {dataCtx.currentCurrency}
+            {accountData.balance.toFixed(2)}
+          </p>
         </div>
         <MonthlyReport />
         <BalanceManager />
