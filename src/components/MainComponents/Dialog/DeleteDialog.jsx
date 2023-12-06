@@ -16,10 +16,19 @@ export default forwardRef(function DeleteDialog({isAccount, deleteHandler}, ref)
 
   return createPortal(
     <Dialog ref={ref} header={`Delete ${isAccount ? "Account" : "Record"}?`}>
-      <div>
-        <h3>delete {isAccount ? "Account" : "Record"}</h3>
-        <Button onClick={closeDialog}>No</Button>
-        <Button onClick={deleteHandler}>Yes</Button>
+      <div className="flex flex-col">
+        <h3 className="text-[1.1rem] w-96 text-center p-1.5 mt-1 mb-2 rounded-md bg-green-800">
+          Are you sure you want to delete the {isAccount ? "account" : "record"}? This cant be
+          undone.
+        </h3>
+        <div className="flex justify-center w-full gap-5">
+          <Button className="min-w-[48px]" onClick={closeDialog} opacityChange>
+            No
+          </Button>
+          <Button className="min-w-[48px]" onClick={deleteHandler} opacityChange>
+            Yes
+          </Button>
+        </div>
       </div>
     </Dialog>,
     document.querySelector("#dialog")

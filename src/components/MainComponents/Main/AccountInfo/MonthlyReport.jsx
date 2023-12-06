@@ -5,12 +5,9 @@ import Select from "../../../ReusableComponents/Select";
 import MonthlyBars from "./MonthlyBars";
 
 /* Goals:
-   delete record (with dialog)
-   delete account (with dialog)
    Change CurrencySymbol
+   Change Amount of records ShownR
    Change DarkMode (Maybe idk)
-
-
 */
 
 const allMonths = [
