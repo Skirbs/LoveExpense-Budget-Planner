@@ -17,7 +17,7 @@ export default forwardRef(function NewUserDialog(props, ref) {
   }
 
   return createPortal(
-    <Dialog ref={ref} header="Create User">
+    <Dialog ref={ref} header="Create Account">
       <form
         onSubmit={newUserHandler}
         className="flex flex-col items-center gap-1 mt-2 w-[80vw] sm:w-[350px]">
