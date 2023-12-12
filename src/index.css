@@ -20,6 +20,17 @@
     background-color: yellow;
   }
 
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #073c1d;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #052e16;
+  }
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
